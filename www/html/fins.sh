@@ -1,0 +1,1 @@
+IP-> You must specify a region. You can also configure your region by running "aws configure".  Instance id-> "i-01ae82711b7efb306"

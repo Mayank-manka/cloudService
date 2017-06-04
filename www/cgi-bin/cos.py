@@ -11,11 +11,11 @@ dirname=data.getvalue('dname')
 dirram=data.getvalue('dram')
 dircpu=data.getvalue('dcpu')
 print "1111"
-os.system('yum install virt-install -y')
+os.system('sudo yum install virt-install -y')
 print "2222"
-print os.system('virt-install --cdrom /root/Downloads/ubuntu-14.04-desktop-amd64.iso --ram '+dirram+' --vcpu '+dircpu+' --nodisk --name '+dirname+' --graphics vnc,port=5910,listen=0.0.0.0')
-os.system('yum install novnc python-sockify -y')
-os.system('websockify --web=/usr/share/novnc 6080 192.168.1.100:5912')
+print os.system('sudo virt-install --cdrom /root/Downloads/ubuntu-14.04-desktop-amd64.iso --ram '+dirram+' --vcpu '+dircpu+' --nodisk --name '+dirname+' --graphics vnc,port=5910,listen=0.0.0.0')
+os.system('sudo yum install novnc python-sockify -y')
+os.system('sudo websockify --web=/usr/share/novnc 6080 192.168.1.100:5912')
 
 web='''
 <!DOCTYPE html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DETAILS</title>
+</head>
+<body style="background-color:powderblue">
+<h1 style="color:red;">AMAZON AWS</h1>
+<form action="/cgi-bin/iins.py" method="POST">
+ <fieldset>
+  <legend>ENTRY FIELD (for creation of new volume):</legend>
+  Size(Gib):<br>
+  <input name="sz" type="number">
+  <br><br>
+  Availability zone:<br>
+   <select name="az">
+  <option value="a">us-west-2a</option>
+  <option value="b">us-west-2b</option>
+  <option value="c">us-west-2c</option>
+   </select> 
+  <br><br>
+  <input type="submit" value="Submit">
+  <input type="reset">
+ <fieldset>
+</form><br><br>
+</body>
+</html>
