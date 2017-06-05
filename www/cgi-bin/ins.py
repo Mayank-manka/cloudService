@@ -45,7 +45,7 @@ web='''
   <div class="list-group">
    <p></p>
     <a href="/fins.sh" class="list-group-item"><b>Download the file of instructions</b></a>
-    <a href="/devenv-key.pem.zip" class="list-group-item"><b>Download the key</b></a>
+    <a href="/root/Downloads/devenv-key.pem" class="list-group-item" download><b>Download the key</b></a>
     <b>Open the terminal and type the command: ssh -i path_of_downloaded_key user_name@pulic_ip</b>
     <b>For Redhat : user_name= ec2-user</b>
     <b>For Ubuntu : user_name= ubuntu</b>

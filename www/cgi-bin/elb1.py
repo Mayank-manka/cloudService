@@ -3,8 +3,11 @@ import cgi,commands,time
 print "content-type:text/html"
 print ""
 data=cgi.FieldStorage()
-si=data.getvalue('sz')
-	
+a=data.getvalue('sz')
+
+commands.getoutput("sudo aws elb create-load-balancer --load-balancer-name "+a+" --listeners 'Protocol=http,LoadBalancerPort=80,InstanceProtocol=http,InstancePort=80' --availability-zones us-west-2a us-west-2b us-west-2c")
+
+
 web='''
 <!DOCTYPE html>
 <html lang="en">
@@ -20,20 +23,12 @@ web='''
 <div class="container">
   <h1 style="color:red">AMAZON AWS</h1>
   <div class="list-group">
-   <h3>BUCKET REMOVED</h3>
+   <h3>ELB CREATED</h3>
   </div>
 </div>
 
 </body>
 </html>
 '''
-l=commands.getstatusoutput("sudo aws s3 rb s3://"+si+" --force")
 
-
-if l[0]!=0:
-	print "Sorry!! Bucket does not exist"
-	print "<meta http-equiv='refresh' content='text/html; url=/s32.html>"
-
-
-else:
-	print web
+print web

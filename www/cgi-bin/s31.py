@@ -29,7 +29,7 @@ web='''
 '''
 
 	
-l=commands.getoutput("sudo aws s3 mb s3://"+si)
+l=commands.getstatusoutput("sudo aws s3 mb s3://"+si)
 if l[0]!=0:
 	print "Bucket name already exists"
 	print "<meta http-equiv='refresh' content='text/html; url=/s31.html>"
