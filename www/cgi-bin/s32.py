@@ -5,8 +5,7 @@ print ""
 data=cgi.FieldStorage()
 si=data.getvalue('sz')
 	
-commands.getoutput("sudo aws s3 rb s3://"+si)
-
+l=commands.getoutput("sudo aws s3 rb s3://"+si+"--force")
 
 web='''
 <!DOCTYPE html>
@@ -31,4 +30,10 @@ web='''
 </html>
 '''
 
-print web
+if l[0]!=0:
+	print "Sorry!! Bucket does not exist"
+	print "<meta http-equiv='refresh' content='text/html; url=/s32.html>"
+
+
+else:
+	print web

@@ -4,9 +4,6 @@ print "content-type:text/html"
 print ""
 data=cgi.FieldStorage()
 si=data.getvalue('sz')
-	
-commands.getoutput("sudo aws s3 mb s3://"+si)
-
 
 web='''
 <!DOCTYPE html>
@@ -31,4 +28,10 @@ web='''
 </html>
 '''
 
-print web
+	
+l=commands.getoutput("sudo aws s3 mb s3://"+si)
+if l[0]!=0:
+	print "Bucket name already exists"
+	print "<meta http-equiv='refresh' content='text/html; url=/s31.html>"
+else:
+	print web
