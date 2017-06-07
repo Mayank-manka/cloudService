@@ -3,10 +3,16 @@ import cgi,commands,time
 print "content-type:text/html"
 print ""
 data=cgi.FieldStorage()
-a=data.getvalue('id11')
-b=data.getvalue('id12')
+a=data.getvalue('vid')
+b=data.getvalue('iid')
+c=data.getvalue('nv')
+d=data.getvalue('size')
 
-commands.getoutput("sudo aws ec2 attach-volume --volume-id "+a+" --instance-id "+b+" --device /dev/sdf")
+if size="":
+	l=commands.getoutput("sudo aws ec2 attach-volume --volume-id "+a+" --instance-id "+b+" --device /dev/"+c)
+else:
+	lm=commands.getoutput("sudo aws ec2 modify-volume --region us-west-2 --volume-id "+a+" --size "+d+" --volume-type gp2")
+	l=commands.getoutput("sudo aws ec2 attach-volume --volume-id "+a+" --instance-id "+b+" --device /dev/"+c)
 
 
 web='''
@@ -25,6 +31,11 @@ web='''
   <h1 style="color:red">AMAZON AWS</h1>
   <div class="list-group">
    <h3>VOLUME ATTACHED</h3>
+   <p>For LINUX instances:</p>
+   <p>Create a directory inside <b>/media</b></p>
+   <p>Format it</p>
+   <p>Mount</p>
+   <p>Mount as -> <b>mount /dev/'''+name+''' /media/directory_name</b></p>
   </div>
 </div>
 

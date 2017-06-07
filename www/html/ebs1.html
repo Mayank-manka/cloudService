@@ -8,15 +8,14 @@
 <form action="/cgi-bin/iins.py" method="POST">
  <fieldset>
   <legend>ENTRY FIELD (for creation of new volume):</legend>
-  Size(Gib):<br>
-  <input name="sz" type="number">
+  Instance id:<br>
+  <input name="s" type="text">
   <br><br>
-  Availability zone:<br>
-   <select name="az">
-  <option value="a">us-west-2a</option>
-  <option value="b">us-west-2b</option>
-  <option value="c">us-west-2c</option>
-   </select> 
+  Size(Gib):<br>
+  <input name="sz" type="number" min="1" max="10">
+  <br><br>
+  Name:<br>
+  <input name="az" type="text">
   <br><br>
   <input type="submit" value="Submit">
   <input type="reset">

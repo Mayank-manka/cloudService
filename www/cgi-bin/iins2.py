@@ -5,7 +5,7 @@ print ""
 data=cgi.FieldStorage()
 a=data.getvalue('id21')
 
-commands.getoutput("sudo aws ec2 create-snapshot --volume-id "+a+" --description 'This is my root volume snapshot.'")
+idd=commands.getoutput("sudo aws ec2 create-snapshot --volume-id "+a+" --description 'This is my root volume snapshot.' --query 'SnapshotId'")
 
 
 web='''
@@ -24,6 +24,7 @@ web='''
   <h1 style="color:red">AMAZON AWS</h1>
   <div class="list-group">
    <h3>SNAPSHOT TAKEN</h3>
+   <p>Snapshot id -> '''+idd+'''</p>
   </div>
 </div>
 

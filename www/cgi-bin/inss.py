@@ -6,7 +6,7 @@ data=cgi.FieldStorage()
 s=data.getvalue('i')
 ss=data.getvalue('ii')
 
-s=commands.getoutput("sudo aws ec2 create-image --instance-id "+ii+" --name "+s+" --description 'An AMI for my server'")
+sss=commands.getoutput("sudo aws ec2 create-image --instance-id "+ss+" --name "+s+" --description 'An AMI for my server' --query 'ImageId'")
 
 web='''
 <!DOCTYPE html>
@@ -24,6 +24,7 @@ web='''
   <h1 style="color:red">AMAZON AWS</h1>
   <div class="list-group">
    <h3>Image created</h3>
+   <p>Image id-> '''+sss+'''</p>
   </div>
 </div>
 
