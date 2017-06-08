@@ -11,10 +11,9 @@ dirname=data.getvalue('dname')
 dirram=data.getvalue('dram')
 dircpu=data.getvalue('dcpu')
 
-os.system('sudo yum install virt-install -y')
-print os.system('sudo virt-install --cdrom /root/Downloads/rhel-server-7.2-x86_64-dvd.iso --ram '+dram+' --vcpu '+dcpu+' --nodisk --name '+dirname+' --graphics vnc,port=5910,listen=0.0.0.0')
-os.system('sudo yum install novnc python-sockify -y')
-os.system('sudo websockify --web=/usr/share/novnc 6080 192.168.1.100:5912')
+print os.system('sudo qrencode -s 8*8 -o /var/www/html/images/wow.png http://192.168.1.100:6080')
+print os.system('sudo virt-install --cdrom /root/Downloads/rhel-server-7.2-x86_64-dvd.iso --ram '+dirram+' --vcpu '+dircpu+' --nodisk --name '+dirname+' --graphics vnc,port=5950,listen=0.0.0.0 &')
+print os.system('sudo websockify --web=/usr/share/novnc 6080 0.0.0.0:5950 &')
 
 web='''
 <!DOCTYPE html>
@@ -31,7 +30,8 @@ web='''
 <div class="container">
   <h1 style="color:red">IAAS CLOUD</h1>
   <div class="list-group">
-    <a href="/cli.sh" class="list-group-item"><b>Download the file and launch your OS</b></a>
+    <a href='http://192.168.1.100:6080'>Here is your OS</a><br><br>
+    <a href='/images/wow.png'>You can also use the OS on phone by scanning the generated QR code</a>
   </div>
 </div>
 
