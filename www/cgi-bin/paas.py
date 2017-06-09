@@ -12,24 +12,12 @@ if p=='a':
 	passwd="q"	
 	commands.getoutput("sudo docker start "+x)		
 	commands.getoutput("sudo docker attach "+x)
-	commands.getoutput("sudo docker exec "+x+" useradd -s /usr/bin/python a")
-	commands.getoutput("sudo docker exec "+x+" echo q | passwd a --stdin")
 	
 elif p=='b':
 	user="b"
 	passwd="q"
 	commands.getoutput("sudo docker start "+x)		
 	commands.getoutput("sudo docker attach "+x)	
-	commands.getoutput("sudo docker exec "+x+" useradd -s /usr/bin/java b")
-	commands.getoutput("sudo docker exec "+x+" echo q | passwd b --stdin")
-	
-else:	
-	user="c"
-	passwd="q"	
-	commands.getoutput("sudo docker start "+x)		
-	commands.getoutput("sudo docker attach "+x)
-	commands.getoutput("sudo docker exec "+x+" useradd -s /usr/bin/php c")
-	commands.getoutput("sudo docker exec "+x+" echo q | passwd c --stdin")
 	
 ip=commands.getoutput("sudo docker exec "+x+" hostname -i")
 
