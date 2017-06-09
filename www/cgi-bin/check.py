@@ -23,6 +23,7 @@ web='''
     <a href="/saas.html" class="list-group-item"><b>SAAS  ->  Software as a service</b></a>
     <a href="/staas.html" class="list-group-item"><b>StAAS ->  Storage as a service</b></a>
     <a href="/iaas.html" class="list-group-item"><b>IAAS  ->  Infrastructure as a service</b></a>
+    <a href="/paas.html" class="list-group-item"><b>PAAS  ->  Platform as a service</b></a>
     <a href="/amazon.html" class="list-group-item"><b>AMAZON AWS</b></a>
   </div>
 </div>
