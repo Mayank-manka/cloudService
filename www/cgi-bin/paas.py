@@ -12,24 +12,24 @@ if p=='a':
 	passwd="q"	
 	commands.getoutput("sudo docker start "+x)		
 	commands.getoutput("sudo docker attach "+x)
-	commands.getoutput("sudo useradd -s /usr/bin/python a")
-	commands.getoutput("sudo echo q | passwd a --stdin")
+	commands.getoutput("sudo docker exec "+x+" useradd -s /usr/bin/python a")
+	commands.getoutput("sudo docker exec "+x+" echo q | passwd a --stdin")
 	
 elif p=='b':
 	user="b"
 	passwd="q"
 	commands.getoutput("sudo docker start "+x)		
 	commands.getoutput("sudo docker attach "+x)	
-	commands.getoutput("sudo useradd -s /usr/bin/java b")
-	commands.getoutput("sudo echo q | passwd b --stdin")
+	commands.getoutput("sudo docker exec "+x+" useradd -s /usr/bin/java b")
+	commands.getoutput("sudo docker exec "+x+" echo q | passwd b --stdin")
 	
 else:	
 	user="c"
 	passwd="q"	
 	commands.getoutput("sudo docker start "+x)		
 	commands.getoutput("sudo docker attach "+x)
-	commands.getoutput("sudo useradd -s /usr/bin/python c")
-	commands.getoutput("sudo echo q | passwd c --stdin")
+	commands.getoutput("sudo docker exec "+x+" useradd -s /usr/bin/php c")
+	commands.getoutput("sudo docker exec "+x+" echo q | passwd c --stdin")
 	
 ip=commands.getoutput("sudo docker exec "+x+" hostname -i")
 
@@ -46,7 +46,7 @@ web='''
 </head>
 <body style="background-color:powderblue">
 <div class="container">
-  <h1 style="color:red">AMAZON AWS</h1>
+  <h1 style="color:red">PAAS</h1>
   <div class="list-group">
     <p>Container id -> <b> '''+x+'''</b></p>
     <p>USER -> <b>'''+user+'''</b></p>
