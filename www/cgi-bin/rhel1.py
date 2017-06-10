@@ -12,8 +12,8 @@ dirram=data.getvalue('dram')
 dircpu=data.getvalue('dcpu')
 
 os.system('sudo qrencode -s 8*8 -o /var/www/html/images/wow.png http://192.168.1.100:6088')
-#os.system('sudo qemu-img create -f qcow2 -b /var/lib/libvirt/images/rhcsa_exam.qcow2 /var/lib/libvirt/images/'+dirname+'.qcow2')
-os.system('sudo virt-install --name '+dirname+' --ram '+dirram+' --vcpu '+dircpu+' --disk path=/var/lib/libvirt/images/manka.qcow2 --graphics vnc,listen=0.0.0.0,port=5963 --import &')
+os.system('sudo qemu-img create -f qcow2 -b /var/lib/libvirt/images/rhcsa_exam.qcow2 /var/lib/libvirt/images/'+dirname+'.qcow2')
+os.system('sudo virt-install --name '+dirname+' --ram '+dirram+' --vcpu '+dircpu+' --disk path=/var/lib/libvirt/images/'+dirname+'.qcow2 --graphics vnc,listen=0.0.0.0,port=5963 --import &')
 os.system('sudo websockify --web=/usr/share/novnc 6088 0.0.0.0:5963 &')
 
 web='''
