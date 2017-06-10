@@ -6,7 +6,7 @@ data=cgi.FieldStorage()
 s=data.getvalue('s1')
 ss=data.getvalue('s2')
 	
-commands.getoutput("sudo aws s3 mv "+ss+" s3://"+s)
+commands.getoutput("sudo aws s3 cp "+ss+" s3://"+s)
 
 
 web='''

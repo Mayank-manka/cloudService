@@ -1,24 +1,19 @@
 #!/usr/bin/python2
-import cgi
-import os
-import commands
-import time
-
+import cgi,commands,time
 print "content-type:text/html"
 print ""
 data=cgi.FieldStorage()
-dirname=data.getvalue('dname')
-dirsize=data.getvalue('dsize')
-vg="myhd"
+s=data.getvalue('s1')
+ss=data.getvalue('s2')
+	
+commands.getoutput("sudo aws s3 cp "+ss+" s3://"+s" --recursive")
 
-commands.getoutput("sudo lvextend --size +"+dirsize+"M /dev/mapper/"+vg+"-"+dirname)
-commands.getoutput("sudo resize2fs /dev/mapper/"+vg+"-"+dirname)
 
 web='''
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>STAAS CLOUD</title>
+  <title>AMAZON AWS</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/static/template1.css">
@@ -27,9 +22,9 @@ web='''
 </head>
 <body style="background-color:powderblue">
 <div class="container">
-  <h1 style="color:red">STAAS CLOUD</h1>
+  <h1 style="color:red">AMAZON AWS</h1>
   <div class="list-group">
-    <h3>Size Extended</h3>
+   <h3>DATA MOVED</h3>
   </div>
 </div>
 

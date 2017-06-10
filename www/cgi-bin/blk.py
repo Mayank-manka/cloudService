@@ -2,6 +2,7 @@
 import os
 import commands
 import time
+import cgi
 
 print "content-type:text/html"
 print ""
@@ -14,22 +15,17 @@ commands.getoutput("sudo yum install scsi-target-utils -y")
 commands.getoutput("sudo systemctl start nfs-server")
 commands.getoutput("sudo systemctl restart tgtd")
 vg="myhd"
-print commands.getoutput("sudo lvcreate --name "+dirname+" --size "+dirsize+"M "+vg)
+commands.getoutput("sudo lvcreate --name "+dirname+" --size "+dirsize+"M "+vg)
 
 iqn="iqn.2003-11.example.com:"+dirname
-msg="<target "+iqn+">\nbacking store /dev/myhd/"+dirname+"\n</target>\n"
+msg="<target "+iqn+">\nbacking-store /dev/myhd/"+dirname+"\n</target>\n"
 
-f=open("/etc/tgt/tgtd.conf",'a+')
+f=open("/etc/tgt/targets.conf",'a+')
 f.write(msg)
 f.close()
 
 commands.getoutput("sudo iptables -F")
 commands.getoutput("sudo setenforce 0")
-msg = "#!/usr/bin/python\nimport time,commands\n\ncommands.getoutput('sudo yum install iscsi-initiator-utils -y')\nq=commands.getoutput('sudo iscsiadm --mode discoverydb --type sendtargets --portal 192.168.1.100 --discover')\np=q.split()\ncommands.getoutput('iscsiadm --mode node --targetname "+p[1]+" --portal 192.168.1.100:3260 --login')\ncommands.getoutput('sudo iptables -F')\ncommands.getoutput('sudo setenforce 0')"
-
-f = open("/var/www/html/fblkclient.sh","w")
-f.write(msg)
-f.close()
 
 web='''
 <!DOCTYPE html>

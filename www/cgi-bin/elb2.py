@@ -3,33 +3,20 @@ import cgi,commands,time
 print "content-type:text/html"
 print ""
 data=cgi.FieldStorage()
-a=data.getvalue('sz')
-b=data.getvalue('s')
+fld=data.keys()
+k=len(fld)
+r=''
+p=1;
+region="us-west-2a us-west-2b us-west-2c "
+fld.sort()
+name=data.getvalue(fld[0])
+while p<k:
+	r+=data.getvalue(fld[p])+' '
+	p+=1
 
-commands.getoutput("sudo aws elb register-instances-with-load-balancer --load-balancer-name "+a+" --instances "+b)
+a=commands.getoutput(' sudo aws elb deregister-instances-from-load-balancer --load-balancer-name '+name+' --instances '+r)
+
+print l+'\n'
+print a
 
 
-web='''
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>AMAZON AWS</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/static/template1.css">
-  <script src="/static/template2.js"></script>
-  <script src="/static/template3.js"></script>
-</head>
-<body style="background-color:powderblue">
-<div class="container">
-  <h1 style="color:red">AMAZON AWS</h1>
-  <div class="list-group">
-   <h3>INSTANCE ATTACHED</h3>
-  </div>
-</div>
-
-</body>
-</html>
-'''
-
-print web
